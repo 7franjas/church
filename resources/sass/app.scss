@@ -1,0 +1,30 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Bootstrap
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//Ionicons
+@import "node_modules/ionicons/dist/scss/ionicons.scss";
+
+//Font awesome
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+//Toastr
+@import "node_modules/toastr/toastr.scss";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
