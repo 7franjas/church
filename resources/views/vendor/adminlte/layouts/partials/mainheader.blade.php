@@ -8,8 +8,8 @@
         <span class="logo-mini logo-color"><img src="{{url('/img/logo/svg/logo-mini-color.svg')}}" class="svg-logo" onError="this.onerror=null;this.src='/img/logo/png/logo-mini-color.png';" /></span>
     
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="{{url('/img/logo/svg/logo.svg')}}" class="svg-logo" onError="this.onerror=null;this.src='/img/logo/png/logo.png';" /></span>
-        <span class="logo-lg logo-color"><img src="{{url('/img/logo/svg/logo-color.svg')}}" class="svg-logo" onError="this.onerror=null;this.src='/img/logo/png/logo-color.png';" /></span>
+        <span class="logo-lg"><img src="{{url('/img/logo/png/logo.png')}}" class="svg-logo" onError="this.onerror=null;this.src='/img/logo/png/logo.png';" /></span>
+        <span class="logo-lg logo-color"><img src="{{url('/img/logo/png/logo-color.png')}}" class="svg-logo" onError="this.onerror=null;this.src='/img/logo/png/logo-color.png';" /></span>
     </a>
 
     <!-- Header Navbar -->
@@ -56,10 +56,10 @@
                     </li>
                 @endif
 
-                <!-- Control Sidebar Toggle Button -->
+                <!-- Control Sidebar Toggle Button 
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </nav>

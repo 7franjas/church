@@ -13,6 +13,7 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/app-landing.js', 'public/js/app-landing.js')
+    .js('resources/assets/js/auth.js', 'public/js/auth.js') // auth.js
     //.sass('resources/sass/app.scss', 'public/css')
     .less('node_modules/bootstrap-less/bootstrap/bootstrap.less', 'public/css/bootstrap.css')
     .copyDirectory('resources/assets/img/*.*','public/img/')

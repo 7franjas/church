@@ -34,17 +34,59 @@ Route::group(['middleware' => 'auth'], function () {
 	 * Profile Route
 	 */
     Route::get('/profile','UserController@profile')->name('profile'); // Display Profile
-	Route::put('/updateprofile/{id}','UserController@updateprofile')->name('updateprofile'); // Display Update Profile
+		Route::put('/updateprofile/{id}','UserController@updateprofile')->name('updateprofile'); // Display Update Profile
     
 	/**
-	 * Brothera Route
+	 * Brothers Route
 	 */
-    Route::resource('/brothers','BrotherController')->middleware('role:superadministrador');	// Display Users CRUD
+		Route::resource('/brothers','BrotherController')->middleware('role:superadministrador');	// Display Users CRUD
+	
+
+	/**
+	 * Familys Route
+	 */
+    Route::resource('/familys','FamilyController')->middleware('role:superadministrador');	// Display Users CRUD
+
+	/**
+	 * 
+	 */
+		Route::resource('/area','AreaController')->middleware('role:superadministrador');	// Display Users CRUD		
+		Route::resource('/subarea','SubareaController')->middleware('role:superadministrador');	// Display Users CRUD		
+		
+	/**
+	 * Ingresos Route
+	 */
+		Route::resource('/diezmos','DiezmoController')->middleware('role:superadministrador');	// Display Users CRUD
+		Route::resource('/ofrendas','OfrendaController')->middleware('role:superadministrador');	// Display Users CRUD
+		Route::resource('/ingarea','IngareaController')->middleware('role:superadministrador');	// Display Users CRUD
+	
+		/**
+	 * Egresos
+	 */
+		Route::resource('/egresos','EgresoController')->middleware('role:superadministrador');	// Display Users CRUD
+
+	/**
+	 * Reportes
+	 */
+	Route::resource('/stats','StatsController')->middleware('role:superadministrador');	// Display Users CRUD
+	
+
+	/**
+	 * Ajax Route
+	 */
+		Route::get('/datatable_lang','AjaxController@datatable_lang')->name('ajax.datatable_lang'); // Get Datatable Language (español)
+		Route::post('/avatar','AjaxController@profile_avatar')->name('ajax.avatar'); // Save avatar ajax
 
 
 	/**
 	 * Ajax Route
 	 */
-	Route::get('/datatable_lang','AjaxController@datatable_lang')->name('ajax.datatable_lang'); // Get Datatable Language (español)
-	Route::post('/avatar','AjaxController@profile_avatar')->name('ajax.avatar'); // Save avatar ajax
+		Route::prefix('ajax')->middleware('role:superadministrador')->group(function(){
+			Route::get('/autocomplete/family','AjaxController@autoCompleteFamily')->name('ajax.autocomplete.family'); // Get live autocomplete for patients
+			Route::get('/autocomplete/area','AjaxController@autoCompleteArea')->name('ajax.autocomplete.area'); // Get live autocomplete for area
+			Route::get('/autocomplete/subarea','AjaxController@autoCompleteSubarea')->name('ajax.autocomplete.subarea'); // Get live autocomplete for subarea
+			Route::get('/autocomplete/brother','AjaxController@autoCompleteBrother')->name('ajax.autocomplete.brother'); // Get live autocomplete for subarea
+	});
+
+	
 });

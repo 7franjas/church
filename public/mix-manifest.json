@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/bootstrap.css": "/css/bootstrap.css",
+    "/js/auth.js": "/js/auth.js",
     "/js/app-landing.js": "/js/app-landing.js",
     "/img/app-bg.png": "/img/app-bg.png",
     "/img/arrow1.png": "/img/arrow1.png",

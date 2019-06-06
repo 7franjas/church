@@ -20,9 +20,9 @@ class BrotherDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable->addColumn('action', function($query){
-            return  '<a href="'.route("brothers.index").'" class="label label-success action-show" title="Ver"><i class="fa fa-eye"></i></a>'.
+            return  '<a href="'.route("brothers.show", $query->id).'" class="label label-success action-show" title="Ver"><i class="fa fa-eye"></i></a>'.
                     '<a href="'.route("brothers.edit", $query->id).'" class="label label-warning action-edit" title="Editar"><i class="fa fa-edit"></i></a>'.
-                    '<a href="javascript:void(0)" onclick="modalDestroy(event,'.$query->id.')" class="label label-danger action-destroy" title="Eliminar"><i class="fa fa-remove"></i></a>';
+                    '<a href="javascript:void(0)" onclick="modalDestroy(event,'.$query->id.',\''.$query->name.'\')" class="label label-danger action-destroy" title="Eliminar"><i class="fa fa-remove"></i></a>';
         })
         ->editColumn('created_at', function ($query) {
                 # set datetime format
@@ -39,6 +39,12 @@ class BrotherDataTable extends DataTable
                 $date_updated =  ucfirst(Date::parse($query->updated_at)->format('d \d\e ')); 
                 $date_updated .=  ucfirst(Date::parse($query->updated_at)->format('F, Y')); 
                 return $query->updated_at ? $date_updated : '';
+        })
+        ->editColumn('birth', function ($query) {
+            # set datetime format
+            $date_birth =  ucfirst(Date::parse($query->birth)->format('d \d\e ')); 
+            $date_birth .=  ucfirst(Date::parse($query->birth)->format('F, Y')); 
+            return $query->birth ? $date_birth : '';
         });
 
 
@@ -54,10 +60,10 @@ class BrotherDataTable extends DataTable
     public function query(Brother $model)
     {
 
-        $box = $model->newQuery()->select();
+        $brother = $model->newQuery()->select();
 
 
-        return $this->applyScopes($box);
+        return $this->applyScopes($brother);
 
     }
 
@@ -76,7 +82,7 @@ class BrotherDataTable extends DataTable
                         'dom'     => "<'row'<'col-sm-6'B><'col-sm-6'f>><'row'<'col-sm-12'rt>><'row'<'col-sm-5'i><'col-sm-7'p>>",
                         'order'   => [[0, 'asc']],
                         'responsive' => true,
-                        //'language' => [ 'url' => route('ajax.datatable_lang') ],
+                        'language' => [ 'url' => route('ajax.datatable_lang') ],
                         'buttons' => [
                             ['extend' => 'create',
                                'text' => '<i class="fa fa-user-plus"></i> Crear',
@@ -85,7 +91,6 @@ class BrotherDataTable extends DataTable
                             'export',
                             'print',
                             'reset',
-                            'reload',
                         ],
                         'initComplete' => 'function(setting, json){ $("#datatable-view").fadeTo( "slow" , 1.0); }'
                         /* Columns Priority for Responsive
@@ -106,9 +111,16 @@ class BrotherDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => ['name'=>'id', 'data'=>'id', 'title'=>'Nro Ingreso', 'visible'=>true],
-            'created_at' => ['name'=>'created_at', 'data'=>'created_at', 'title'=>'Creado en', 'visible'=>true],
-            'updated_at' => ['name'=>'updated_at', 'data'=>'updated_at', 'title'=>'Modificado en', 'visible'=>true]
+            'id' => ['name'=>'id', 'data'=>'id', 'title'=>'ID', 'visible'=>true],
+            'name' => ['name'=>'name', 'data'=>'name', 'title'=>'Nombre', 'visible'=>true],
+            'birth' => ['name'=>'birth', 'data'=>'birth', 'title'=>'Nacimiento', 'visible'=>true],
+            'phone' => ['name'=>'phone', 'data'=>'phone', 'title'=>'Telefono', 'visible'=>true],
+            'celphone' => ['name'=>'celphone', 'data'=>'celphone', 'title'=>'Celular', 'visible'=>true],
+            'address' => ['name'=>'address', 'data'=>'address', 'title'=>'Dirección', 'visible'=>false],
+            'observation' => ['name'=>'observation', 'data'=>'observation', 'title'=>'Observación', 'visible'=>false],
+            'created_at' => ['name'=>'created_at', 'data'=>'created_at', 'title'=>'Creado en', 'visible'=>false],
+            'updated_at' => ['name'=>'updated_at', 'data'=>'updated_at', 'title'=>'Modificado en', 'visible'=>false],
+            'created_at' => ['name'=>'created_at', 'data'=>'created_at', 'title'=>'Eliminado en', 'visible'=>false]
         ];
     }
 

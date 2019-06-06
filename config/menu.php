@@ -36,14 +36,27 @@ use Spatie\Menu\Laravel\Link;
                 ->add(Menu::new()->prepend('<a href="#"><i class="fa fa-home"></i><span>Administración</span> <i class="fa fa-angle-left pull-right"></i></a>')
                     ->addParentClass('treeview')              
                     ->add(Link::toUrl('/brothers', '<i class="fa fa-circle-o"></i><span>Hermanos</span>'))->addClass('treeview-menu')
-                    ->add(Link::toUrl('adminlte', '<i class="fa fa-circle-o"></i><span>Familias</span>'))
+                    ->add(Link::toUrl('/area', '<i class="fa fa-circle-o"></i><span>Area</span>'))
+                    ->add(Link::toUrl('/subarea', '<i class="fa fa-circle-o"></i><span>Subarea</span>'))
+                    //->add(Link::toUrl('/familys', '<i class="fa fa-circle-o"></i><span>Familias</span>'))
                 )
     
-            ->add(Menu::new()->prepend('<a href="#"><i class="fa fa-usd"></i><span>Finanzas</span> <i class="fa fa-angle-left pull-right"></i></a>')
-                ->addParentClass('treeview')        
-                    ->add(Link::toUrl('info', '<i class="fa fa-circle-o"></i><span>Ingresos</span>'))->addClass('treeview-menu')
-                    ->add(Link::toUrl('adminlte', '<i class="fa fa-circle-o"></i><span>Egresos</span>'))
-                    ->add(Link::toUrl('calendar', '<i class="fa fa-circle-o"></i><span>Reportes</span>'))
+            ->add(Menu::new()->prepend('<a href="#"><i class="fa fa-usd"></i><span>Ingresos</span> <i class="fa fa-angle-left pull-right"></i></a>')
+                ->addParentClass('treeview')  
+                    ->add(Link::toUrl('diezmos', '<i class="fa fa-circle-o"></i><span>Diezmos</span>'))->addClass('treeview-menu')
+                    ->add(Link::toUrl('ofrendas', '<i class="fa fa-circle-o"></i><span>Ofrendas</span>'))
+                    ->add(Link::toUrl('ingarea', '<i class="fa fa-circle-o"></i><span>Ingresos por Area</span>'))
+            )
+
+            ->add(Menu::new()->prepend('<a href="#"><i class="fa fa-usd"></i><span>Egresos</span> <i class="fa fa-angle-left pull-right"></i></a>')
+                ->addParentClass('treeview')  
+                    ->add(Link::toUrl('egresos', '<i class="fa fa-circle-o"></i><span>Gastos</span>'))->addClass('treeview-menu')
+            )
+
+            ->add(Menu::new()->prepend('<a href="#"><i class="fa fa-usd"></i><span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>')
+                ->addParentClass('treeview')  
+                    ->add(Link::toUrl('stats', '<i class="fa fa-circle-o"></i><span>Estadisticas</span>'))->addClass('treeview-menu')
+                    ->add(Link::toUrl('ingreso', '<i class="fa fa-circle-o"></i><span>Ingresos</span>'))
             )
             ->setActiveFromRequest();
         }

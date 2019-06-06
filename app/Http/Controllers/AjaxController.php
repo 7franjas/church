@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Family;
+use App\Area;
+use App\Subarea;
+use App\Brother;
 
 class AjaxController extends Controller
 {
@@ -74,5 +79,162 @@ class AjaxController extends Controller
 
         return response()->json($language);
 
-    }
+		}
+		
+
+
+	public function autoCompleteFamily(Request $request) {
+
+		$query = $request->get('term','');
+		$user = Auth::user();
+
+		$role_priority = (object) array('name'=>'invitado','display_name'=>'Invitado');
+		# get global role for name ASC and order ASC
+		if(count($user->roles)==1){
+			$role_priority = $user->roles[0];
+		}else{
+				foreach ($user->roles as $key => $role) {
+						if($key === 0){
+								$temp = $role;
+						}else{
+								if($temp->order <= $role->order){
+										$role_priority = $temp;
+								}else{
+										$role_priority = $role;
+										$temp = $role;
+								}
+						}
+
+				}
+		}
+		// set user for user
+		$familys=Family::where('name','LIKE','%'.$query.'%')->get();
+
+		$data=array();
+		foreach ($familys as $family) {
+			$data[]=array('value'=>$family->fam_name,
+							'id'=>$family->id, 
+							'observation' => $family->fam_observation);
+		}
+		if(count($data)) return $data;
+		else return ['value'=>'error'];
+
+	}
+
+	public function autoCompleteArea(Request $request) {
+
+		$query = $request->get('term','');
+		$user = Auth::user();
+
+		$role_priority = (object) array('name'=>'invitado','display_name'=>'Invitado');
+		# get global role for name ASC and order ASC
+		if(count($user->roles)==1){
+			$role_priority = $user->roles[0];
+		}else{
+				foreach ($user->roles as $key => $role) {
+						if($key === 0){
+								$temp = $role;
+						}else{
+								if($temp->order <= $role->order){
+										$role_priority = $temp;
+								}else{
+										$role_priority = $role;
+										$temp = $role;
+								}
+						}
+
+				}
+		}
+		// set user for user
+		$areas=Area::where('area','LIKE','%'.$query.'%')->get();
+
+		$data=array();
+		foreach ($areas as $area) {
+			$data[]=array('value'=>$area->area,
+							'id'=>$area->id, 
+							'description' => $area->description);
+		}
+		if(count($data)) return $data;
+		else return ['value'=>'error'];
+
+	}
+
+
+	public function autoCompleteSubarea(Request $request) {
+
+		$query = $request->get('term','');
+		$user = Auth::user();
+
+		$role_priority = (object) array('name'=>'invitado','display_name'=>'Invitado');
+		# get global role for name ASC and order ASC
+		if(count($user->roles)==1){
+			$role_priority = $user->roles[0];
+		}else{
+				foreach ($user->roles as $key => $role) {
+						if($key === 0){
+								$temp = $role;
+						}else{
+								if($temp->order <= $role->order){
+										$role_priority = $temp;
+								}else{
+										$role_priority = $role;
+										$temp = $role;
+								}
+						}
+
+				}
+		}
+		// set user for user
+		$subareas=Subarea::where('subarea','LIKE','%'.$query.'%')->where('area_id',$request->area_id)->get();
+
+		$data=array();
+		foreach ($subareas as $subarea) {
+			$data[]=array('value'=>$subarea->subarea,
+							'id'=>$subarea->id, 
+							'description' => $subarea->description);
+		}
+		if(count($data)) return $data;
+		if(empty($request->area_id)) return ['value'=>'error_area'];
+		else return ['value'=>'error'];
+
+	}
+
+
+	public function autoCompleteBrother(Request $request) {
+
+		$query = $request->get('term','');
+		$user = Auth::user();
+
+		$role_priority = (object) array('name'=>'invitado','display_name'=>'Invitado');
+		# get global role for name ASC and order ASC
+		if(count($user->roles)==1){
+			$role_priority = $user->roles[0];
+		}else{
+				foreach ($user->roles as $key => $role) {
+						if($key === 0){
+								$temp = $role;
+						}else{
+								if($temp->order <= $role->order){
+										$role_priority = $temp;
+								}else{
+										$role_priority = $role;
+										$temp = $role;
+								}
+						}
+
+				}
+		}
+		// set user for user
+		$brothers=Brother::where('name','LIKE','%'.$query.'%')->get();
+
+		$data=array();
+		foreach ($brothers as $brother) {
+			$data[]=array('value'=>$brother->name,
+							'id'=>$brother->id);
+		}
+		if(count($data)) return $data;
+		else return ['value'=>'error'];
+
+	}
+	
 }

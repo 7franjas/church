@@ -1,8 +1,8 @@
 @extends('adminlte::layouts.app')
 
-@section('title','Administrar Hermanos')
-@section('content_header','Administrar Hermanos')
-@section('content_description','Almacena los hermanos registrados')
+@section('title','Administrar Hermanos(as)')
+@section('content_header','Administrar Hermanos(as)')
+@section('content_description','Almacena los hermanos(as) registrados(as)')
 
 @section('main-content')
 <div class="container-fluid spark-screen">

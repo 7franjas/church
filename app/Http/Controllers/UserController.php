@@ -82,9 +82,9 @@ class UserController extends Controller
 
             # check if change the role
             if(!empty($request->roles)){
-                $user->syncRoles(explode(',',$request->roles), $user->team_id);
+                $user->syncRoles(explode(',',$request->roles));
             }else{
-                $user->syncRoles($request->roles, $user->team_id);
+                $user->syncRoles($request->roles);
             }
 
             $alert = array(
@@ -184,9 +184,9 @@ class UserController extends Controller
 
         # check if change the role
         if(!empty($request->roles)){
-            $user->syncRoles(explode(',',$request->roles), $user->team_id);
+            $user->syncRoles(explode(',',$request->roles));
         }else{
-            $user->syncRoles($request->roles, $user->team_id);
+            $user->syncRoles($request->roles);
         }
 
         $alert = array(

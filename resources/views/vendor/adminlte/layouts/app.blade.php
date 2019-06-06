@@ -35,41 +35,43 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
-<div id="app" v-cloak>
-    <div class="wrapper">
+<body class="skin-blue-light sidebar-mini">
+    <div id="app" v-cloak>
+        <div class="wrapper">
 
-        @include('adminlte::layouts.partials.mainheader')
+            @include('adminlte::layouts.partials.mainheader')
 
-        @include('adminlte::layouts.partials.sidebar')
+            @include('adminlte::layouts.partials.sidebar')
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
 
-            @include('adminlte::layouts.partials.contentheader')
+                @include('adminlte::layouts.partials.contentheader')
 
-            <!-- Main content -->
-            <section class="content">
-                <!-- Your Page Content Here -->
-                @yield('main-content')
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    @yield('main-content')
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
 
-        @include('adminlte::layouts.partials.controlsidebar')
+            
+            @include('adminlte::layouts.partials.controlsidebar')
 
-        @include('adminlte::layouts.partials.footer')
+            @include('adminlte::layouts.partials.footer')
 
-    </div><!-- ./wrapper -->
-</div>
+        </div><!-- ./wrapper -->
+
+    </div>
 
 
-@include('adminlte::layouts.partials.scripts')
-    
-<!-- Toastr Alerts -->
-@include('adminlte::layouts.partials.toastr')
+    @include('adminlte::layouts.partials.scripts')
+        
+    <!-- Toastr Alerts -->
+    @include('adminlte::layouts.partials.toastr')
 
-<!-- Customs Scripts -->
-@yield('page_scripts')
+    <!-- Customs Scripts -->
+    @yield('page_scripts')
 
 </body>
 </html>
