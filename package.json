@@ -29,7 +29,7 @@
     "font-awesome": "^4.7.0",
     "icheck": "^1.0.2",
     "ionicons": "^4.4.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "laravel-mix": "^3.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
