@@ -30,7 +30,7 @@
     "icheck": "^1.0.2",
     "ionicons": "^4.4.8",
     "jquery": "^3.4.1",
-    "laravel-mix": "^3.0",
+    "laravel-mix": "^6.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.4",
